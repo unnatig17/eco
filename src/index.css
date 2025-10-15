@@ -27,10 +27,36 @@ body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
 .animate-fade-in-up { animation: fadeInUp 500ms ease-out both; }
 
 /***** Nice gradient background helper *****/
-.bg-eco {
+.home-bg {
   background: radial-gradient(1200px 600px at 10% -10%, rgba(16,185,129,0.12), transparent 40%),
               radial-gradient(800px 400px at 90% 0%, rgba(5,150,105,0.10), transparent 45%),
               linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
 }
 
 .hover-glow:hover { box-shadow: 0 10px 25px rgba(16,185,129,0.20), 0 2px 6px rgba(2,6,23,0.08); }
+
+.home {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #10b9811f;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
