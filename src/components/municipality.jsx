@@ -1,31 +1,83 @@
-const Municipality =() =>{
-  
+import React, { useState } from 'react';
+
+const sections = [
+  { key: 'dump-locations', label: 'Dump Locations' },
+  { key: 'waste-collection', label: 'Waste Collection' },
+  { key: 'map', label: 'Map' },
+  { key: 'reports', label: 'Reports' }
+];
+
+// Green palette colors
+const palette = {
+  dark: '#14532d',
+  medium: '#22c55e',
+  light: '#bbf7d0',
+  accent: '#4ade80',
+  navActive: '#166534',
+  navInactive: '#bbf7d0'
+};
+
+function Municipality() {
+  const [currentSection, setCurrentSection] = useState(sections[0].key);
+
   return (
-    <div className="p-6 space-y-4">
-      <h1 className="text-2xl font-bold text-emerald-700 mb-6">Municipality Dashboard</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {/* Dump Location Card */}
-        <div className="rounded-xl bg-white shadow p-6 hover:shadow-lg transition">
-          <h2 className="text-lg font-semibold text-gray-800 mb-2">Dump Location</h2>
-          <p className="text-gray-600">Manage or view dump locations in your municipality.</p>
-        </div>
-        {/* Waste Collection Card */}
-        <div className="rounded-xl bg-white shadow p-6 hover:shadow-lg transition">
-          <h2 className="text-lg font-semibold text-gray-800 mb-2">Waste Collection</h2>
-          <p className="text-gray-600">Track and add waste collection records.</p>
-        </div>
-        {/* Map Card */}
-        <div className="rounded-xl bg-white shadow p-6 hover:shadow-lg transition">
-          <h2 className="text-lg font-semibold text-gray-800 mb-2">Map</h2>
-          <p className="text-gray-600">View area and dump site locations on the map.</p>
-        </div>
-        {/* Reports Card */}
-        <div className="rounded-xl bg-white shadow p-6 hover:shadow-lg transition">
-          <h2 className="text-lg font-semibold text-gray-800 mb-2">Reports</h2>
-          <p className="text-gray-600">View collection stats, summaries and reports.</p>
-        </div>
-      </div>
+    <div style={{ backgroundColor: palette.light, minHeight: '100vh', fontFamily: 'Roboto, Arial, sans-serif' }}>
+      {/* Header Navigation */}
+      <header style={{
+        backgroundColor: palette.dark,
+        padding: '16px 0',
+        color: 'white'
+      }}>
+        <nav style={{ display: 'flex', justifyContent: 'center', gap: '32px' }}>
+          {sections.map(section => (
+            <button
+              key={section.key}
+              style={{
+                backgroundColor: currentSection === section.key ? palette.navActive : palette.navInactive,
+                border: 'none',
+                borderRadius: '8px',
+                color: palette.dark,
+                padding: '12px 24px',
+                cursor: 'pointer',
+                fontWeight: 'bold'
+              }}
+              onClick={() => setCurrentSection(section.key)}
+            >
+              {section.label}
+            </button>
+          ))}
+        </nav>
+      </header>
+
+      {/* Main Content */}
+      <main style={{ padding: '32px', maxWidth: '900px', margin: '24px auto', backgroundColor: 'white', borderRadius: '16px', boxShadow: '0 2px 16px rgba(34,197,94,0.12)' }}>
+        {currentSection === 'dump-locations' && (
+          <section>
+            <h2 style={{ color: palette.medium }}>Dump Locations</h2>
+            <p>List your dump locations and related info here.</p>
+          </section>
+        )}
+        {currentSection === 'waste-collection' && (
+          <section>
+            <h2 style={{ color: palette.medium }}>Waste Collection</h2>
+            <p>Schedule, status, or process details about waste collection.</p>
+          </section>
+        )}
+        {currentSection === 'map' && (
+          <section>
+            <h2 style={{ color: palette.medium }}>Map</h2>
+            <p>Include a map or mapping features relevant to your project.</p>
+          </section>
+        )}
+        {currentSection === 'reports' && (
+          <section>
+            <h2 style={{ color: palette.medium }}>Reports</h2>
+            <p>Display reports, analytics, or summaries here.</p>
+          </section>
+        )}
+      </main>
     </div>
   );
 }
+
 export default Municipality;
