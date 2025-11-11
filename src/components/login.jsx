@@ -33,8 +33,8 @@ function LoginForm() {
 
   return (
     <div style={{ 
-      marginLeft: '320px', 
-      marginTop: '100px', 
+      marginLeft: '420px', 
+      marginTop: '200px', 
       padding: '40px', 
       border: '5px solid #025420cf', 
       borderRadius: '10px', 
@@ -96,7 +96,7 @@ function Footer() {
       padding: '10px',
       textAlign: 'center'
     }}>
-      FOOTER
+      ECOTRACK © 2025
     </div>
   );
 }

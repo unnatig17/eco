@@ -10,7 +10,7 @@ const sections = [
 // Green palette colors
 const palette = {
   dark: '#14532d',
-  medium: '#22c55e',
+  medium: '#53c27bff',
   light: '#bbf7d0',
   accent: '#4ade80',
   navActive: '#166534',
