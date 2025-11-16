@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import useCsvData from "../hooks/useCsvData";
+import { APIProvider, Map, AdvancedMarker } from '@vis.gl/react-google-maps';
+const position = { lat: 30.345, lng: 78.029 };
 
 const sections = [
   { key: 'dump-locations', label: 'Dump Locations' },
@@ -19,10 +21,11 @@ const palette = {
 };
 
 function Municipality() {
-  const {data, loading} = useCsvData("dumplocation.csv");
+  const {data: dump, loading: loadingd} = useCsvData("dumplocation.csv");
+  const {data: waste, loading: loadingw} = useCsvData("wastecollection.csv");
   
   const [currentSection, setCurrentSection] = useState(sections[0].key);
-  if(loading) return <p>Loading..</p>;
+  if(loadingd || loadingw) return <p>Loading...</p>;
   return (
     <div style={{ backgroundColor: palette.light, minHeight: '100vh', fontFamily: 'Roboto, Arial, sans-serif' }}>
       {/* Header Navigation */}
@@ -58,22 +61,39 @@ function Municipality() {
           <section>
             <h2 style={{ color: palette.medium }}>Dump Locations</h2>
             
-            <ul>{data.map((item, idx) =>(
-              <li key={idx}>{item.dump_location_id}-{item.location_name}</li>
-            ))}</ul>
-            
+            <ul>{dump.map((item, idx) =>(
+              <li key={idx}>{item.dump_location_id}-{item.location_name}:{item.address}</li>
+            ))}
+            </ul>
           </section>
         )}
         {currentSection === 'waste-collection' && (
           <section>
             <h2 style={{ color: palette.medium }}>Waste Collection</h2>
-            <p>Schedule, status, or process details about waste collection.</p>
+
+            {/* <p>Schedule, status, or process details about waste collection.</p> */}
+
+            <ul>{waste.map((item, idx) =>(
+              <li key={idx}>{item.waste_collection_id}-{item.notes}-{item.quantity_kg}</li>
+            ))}
+            </ul>
           </section>
         )}
         {currentSection === 'map' && (
           <section>
             <h2 style={{ color: palette.medium }}>Map</h2>
             <p>Include a map or mapping features relevant to your project.</p>
+            <APIProvider googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
+              <Map
+                id="municipality-map"
+                mapId="da029e7b748dc0ef9e9727a3"
+                defaultCenter={position}
+                defaultZoom={10}
+                style={{ width: '100%', height: '400px' }}
+              >
+                <AdvancedMarker position={position} title={'My Marker'} />
+              </Map>
+            </APIProvider>
           </section>
         )}
         {currentSection === 'reports' && (
