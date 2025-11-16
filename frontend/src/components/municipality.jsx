@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useCsvData from "../hooks/useCsvData";
 
 const sections = [
   { key: 'dump-locations', label: 'Dump Locations' },
@@ -18,8 +19,10 @@ const palette = {
 };
 
 function Municipality() {
+  const {data, loading} = useCsvData("dumplocation.csv");
+  
   const [currentSection, setCurrentSection] = useState(sections[0].key);
-
+  if(loading) return <p>Loading..</p>;
   return (
     <div style={{ backgroundColor: palette.light, minHeight: '100vh', fontFamily: 'Roboto, Arial, sans-serif' }}>
       {/* Header Navigation */}
@@ -54,7 +57,11 @@ function Municipality() {
         {currentSection === 'dump-locations' && (
           <section>
             <h2 style={{ color: palette.medium }}>Dump Locations</h2>
-            <p>List your dump locations and related info here.</p>
+            
+            <ul>{data.map((item, idx) =>(
+              <li key={idx}>{item.dump_location_id}-{item.location_name}</li>
+            ))}</ul>
+            
           </section>
         )}
         {currentSection === 'waste-collection' && (
