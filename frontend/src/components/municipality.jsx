@@ -61,10 +61,14 @@ function Municipality() {
           <section>
             <h2 style={{ color: palette.medium }}>Dump Locations</h2>
             
-            <ul>{dump.map((item, idx) =>(
-              <li key={idx}>{item.dump_location_id}-{item.location_name}:{item.address}</li>
-            ))}
-            </ul>
+            <ul>
+  {dump.slice(0, 15).map((item, idx) => (
+    <li key={idx}>
+      {item.dump_location_id} - {item.location_name}: {item.address}
+    </li>
+  ))}
+</ul>
+
           </section>
         )}
         {currentSection === 'waste-collection' && (
@@ -86,7 +90,7 @@ function Municipality() {
             <APIProvider googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
               <Map
                 id="municipality-map"
-                mapId="da029e7b748dc0ef9e9727a3"
+                mapId=""
                 defaultCenter={position}
                 defaultZoom={10}
                 style={{ width: '100%', height: '400px' }}
