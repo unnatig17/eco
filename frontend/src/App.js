@@ -7,6 +7,7 @@ import Facility from "./components/facility";
 import Settings from "./components/settings";
 import Reports from "./components/reports";
 import Login from "./components/login";
+import Collections from "./components/collections";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
           <Route path="/facility" element={<Facility />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/reports" element={<Reports />} />
+          <Route path="/collections" element={<Collections />} />
         </Routes>
       </div>
     </BrowserRouter>

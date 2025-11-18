@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useCsvData from "../hooks/useCsvData";
 
 const sections = [
   { key: 'home', label: 'Home' },
@@ -19,6 +20,7 @@ const palette = {
 };
 
 function User() {
+  const {data, loading} = useCsvData("dumplocation.csv");
   const [currentSection, setCurrentSection] = useState(sections[0].key);
 
   return (

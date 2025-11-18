@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useCsvData from "../hooks/useCsvData";
 
 const sections = [
   { key: 'home', label: 'Home' },
@@ -18,8 +19,12 @@ const palette = {
 };
 
 function Facility() {
-  const [currentSection, setCurrentSection] = useState(sections[0].key);
+  const {data , loading: loadingd} = useCsvData("farmer.csv");
+  
 
+  const [currentSection, setCurrentSection] = useState(sections[0].key);
+  if(loadingd) return <p>Loading...</p>;
+  
   return (
     <div style={{ backgroundColor: palette.light, minHeight: '100vh', fontFamily: 'Roboto, Arial, sans-serif' }}>
       {/* Header Navigation */}
