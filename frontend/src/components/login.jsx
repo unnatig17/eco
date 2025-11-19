@@ -1,20 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import "./login.css";
 
-// Sidebar component
+/* SIDEBAR */
 function Sidebar() {
   return (
-    <div style={{ 
-      width: '180px', 
-      background: '#14b85b4b', 
-      padding: '20px', 
-      height: '100vh', 
-      position: 'fixed', 
-      top: 0, 
-      left: 0 
-    }}>
-      <div style={{ marginBottom: '20px', fontSize: '24px' }}>☰</div>
-      <ul style={{ listStyle: 'none', padding: 0 }}>
+    <div className="login-sidebar">
+      <div className="login-sidebar-menu">☰</div>
+
+      <ul>
         <li><Link to="./home">Home</Link></li>
         <li>Documentation</li>
         <li><Link to="./settings">Settings</Link></li>
@@ -25,23 +19,16 @@ function Sidebar() {
   );
 }
 
-// Login Form component
+/* LOGIN FORM */
 function LoginForm() {
   const [role, setRole] = useState('');
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
 
   return (
-    <div style={{ 
-      marginLeft: '420px', 
-      marginTop: '200px', 
-      padding: '40px', 
-      border: '5px solid #025420cf', 
-      borderRadius: '10px', 
-      width: '400px'
-    }}>
+    <div className="login-form-container">
       <form>
-        <div style={{ marginLeft: '80px', marginBottom: '20px' }}>
+        <div className="login-field">
           <label>
             Role:&nbsp;
             <select value={role} onChange={e => setRole(e.target.value)}>
@@ -54,7 +41,8 @@ function LoginForm() {
             </select>
           </label>
         </div>
-        <div style={{ marginLeft: '80px', marginBottom: '20px' }}>
+
+        <div className="login-field">
           <label>
             ID:&nbsp;
             <input 
@@ -65,7 +53,8 @@ function LoginForm() {
             />
           </label>
         </div>
-        <div style={{ marginLeft: '80px', marginBottom: '20px' }}>
+
+        <div className="login-field">
           <label>
             Password:&nbsp;
             <input 
@@ -76,32 +65,25 @@ function LoginForm() {
             />
           </label>
         </div>
-        <Link to={role} style={{ marginLeft: '80px' }}>
-            <button>Login</button>
+
+        <Link to={role}>
+          <button className="login-button" type="button">Login</button>
         </Link>
       </form>
     </div>
   );
 }
 
-// Footer component
+/* FOOTER */
 function Footer() {
   return (
-    <div style={{
-      marginLeft: '220px',
-      position: 'fixed',
-      bottom: 0,
-      width: 'calc(100% - 220px)',
-      background: '#04502e63',
-      padding: '10px',
-      textAlign: 'center'
-    }}>
+    <div className="login-footer">
       ECOTRACK © 2025
     </div>
   );
 }
 
-// Main Page component
+/* MAIN COMPONENT*/
 function Login() {
   return (
     <div>

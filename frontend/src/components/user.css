@@ -1,0 +1,50 @@
+/* Page */
+.user-page {
+  background-color: #bbf7d0;
+  min-height: 100vh;
+  font-family: Roboto, Arial, sans-serif;
+}
+
+/* Header */
+.user-header {
+  background-color: #14532d;
+  padding: 16px 0;
+  color: white;
+}
+
+/* Navbar */
+.user-nav {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+
+/* Navigation Buttons */
+.user-btn {
+  background-color: #bbf7d0;
+  border: none;
+  border-radius: 8px;
+  color: #14532d;
+  padding: 12px 24px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.user-btn.active {
+  background-color: #166534;
+}
+
+/* Card Container */
+.user-main {
+  padding: 32px;
+  max-width: 900px;
+  margin: 24px auto;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(34,197,94,0.12);
+}
+
+/* Titles */
+.user-title {
+  color: #22c55e;
+}
