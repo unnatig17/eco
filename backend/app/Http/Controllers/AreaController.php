@@ -1,33 +1,35 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Area;
 use Illuminate\Http\Request;
 
-class collectionsController extends Controller
+class AreaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return Area::all();
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
-    }
+{
+    $area = Area::create($request->all());
+    return response()->json($area, 201);
+}
+
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        //
+        return Area::findOrFail($id);
     }
 
     /**
@@ -35,7 +37,9 @@ class collectionsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $area = Area::findOrFail($id);
+        $area->update($request->all());
+        return response()->json($area, 200);
     }
 
     /**
@@ -43,6 +47,7 @@ class collectionsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Area::findOrFail($id)->delete();
+        return response()->json(null, 204);
     }
 }

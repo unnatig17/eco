@@ -19,6 +19,8 @@ use App\Http\Controllers\CsvImportController;
 
 Route::get('/csv', [CsvImportController::class, 'import']);
 
+Route::apiResource('/areas', App\Http\Controllers\AreaController::class);
+
 
 Route::get('/ping', function () {
     return ['status' => 'API OK'];

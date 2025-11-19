@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import useCsvData from "../hooks/useCsvData";
-import { APIProvider, Map, AdvancedMarker } from '@vis.gl/react-google-maps';
+//import { APIProvider, Map, AdvancedMarker } from '@vis.gl/react-google-maps';
 const position = { lat: 30.345, lng: 78.029 };
 
 const sections = [
@@ -87,7 +87,7 @@ function Municipality() {
           <section>
             <h2 style={{ color: palette.medium }}>Map</h2>
             <p>Include a map or mapping features relevant to your project.</p>
-            <APIProvider googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
+            {/* <APIProvider googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
               <Map
                 id="municipality-map"
                 mapId=""
@@ -97,7 +97,7 @@ function Municipality() {
               >
                 <AdvancedMarker position={position} title={'My Marker'} />
               </Map>
-            </APIProvider>
+            </APIProvider> */}
           </section>
         )}
         {currentSection === 'reports' && (
