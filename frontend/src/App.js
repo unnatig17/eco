@@ -8,6 +8,9 @@ import Settings from "./components/settings";
 import Reports from "./components/reports";
 import Login from "./components/login";
 import Collections from "./components/collections";
+import AreaPage from "./pages/AreaPage";
+import AreaForm from "./components/Area/AreaForm";
+import AreaList from "./components/Area/AreaList";
 
 export default function App() {
   return (
@@ -23,6 +26,10 @@ export default function App() {
           <Route path="/settings" element={<Settings />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/collections" element={<Collections />} />
+          <Route path="/areas" element={<AreaPage />} />
+          <Route path="/areas/new" element={<AreaForm onSubmit={() => {}} onCancel={() => {}} />} />
+          <Route path="/areas/list" element={<AreaList data={[]} onEdit={() => {}} onDelete={() => {}} />} /> 
+
         </Routes>
       </div>
     </BrowserRouter>
