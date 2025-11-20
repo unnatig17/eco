@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useEffect } from "react";
 import useCsvData from "../hooks/useCsvData";
 import "./municipality.css";
 import { APIProvider, Map, AdvancedMarker } from '@vis.gl/react-google-maps';
-
+import { getAreas, createArea, updateArea, deleteArea } from "../services/areaService";
+import onDelete from '../components/Area/AreaList';
 const position = { lat: 30.345, lng: 78.029 };
 
 const sections = [
@@ -16,7 +18,23 @@ function Municipality() {
   const { data: dump, loading: loadingd } = useCsvData("dumplocation.csv");
   const { data: waste, loading: loadingw } = useCsvData("wastecollection.csv");
 
+  const [areas, setAreas] = useState([]);
+  const [editing, setEditing] = useState(null);
+  const [showForm, setShowForm] = useState(false);
+
   const [currentSection, setCurrentSection] = useState(sections[0].key);
+
+   const load = () => {
+      getAreas().then(res => setAreas(res.data));
+    };
+  
+    // useEffect(() => {
+    //   load();
+    // }, []);
+
+  const handleDelete = (id) => {
+      deleteArea(id).then(load);
+    };
 
   // DUMP TABLE STATE
   const [dumpFilter, setDumpFilter] = useState("all");
@@ -109,7 +127,9 @@ function Municipality() {
                   ))}
                 </select>
 
-                <button className="add-btn">+ Add</button>
+                <button className="add-btn" onClick={() => {
+        window.location.href = '/areas';
+      }}>+ Add</button>
               </div>
             </div>
 
@@ -170,8 +190,8 @@ function Municipality() {
                     <td>{item.longitude}</td>
                     <td>{item.area_id}</td>
                     <td className="actions-col">
-                      <button className="edit-btn">Edit</button>
-                      <button className="delete-btn">Delete</button>
+                      <button className="edit-btn" onClick={()=>{}}>Edit</button>
+                      <button className="delete-btn" onClick={handleDelete}>Delete</button>
                     </td>
                   </tr>
                 ))}
@@ -305,7 +325,7 @@ function Municipality() {
                     <td>{item.dump_location_id}</td>
                     <td className="actions-col">
                       <button className="edit-btn">Edit</button>
-                      <button className="delete-btn">Delete</button>
+                      <button className="delete-btn" onClick={() => onDelete(item.idx)}>Delete</button>
                     </td>
                   </tr>
                 ))}
