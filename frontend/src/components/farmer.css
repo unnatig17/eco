@@ -3,48 +3,54 @@
   background-color: #bbf7d0;
   min-height: 100vh;
   font-family: Roboto, Arial, sans-serif;
-}
-
-/* Header */
-.farmer-header {
-  background-color: #14532d;
-  padding: 16px 0;
-  color: white;
+  padding-bottom: 40px;
 }
 
 /* Navigation */
+.farmer-header {
+  background-color: #bbf7d0;
+  padding: 16px 0;
+}
+
 .farmer-nav {
   display: flex;
   justify-content: center;
-  gap: 32px;
+  gap: 12px;
 }
 
-/* Navigation Buttons */
 .nav-btn {
-  background-color: #bbf7d0;
-  border: none;
+  background-color: white;
+  border: 2px solid #53c27b;
   border-radius: 8px;
   color: #14532d;
-  padding: 12px 24px;
+  padding: 10px 22px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.nav-btn:hover {
+  background-color: #d1fad3;
 }
 
 .nav-btn.active {
   background-color: #166534;
+  color: white;
 }
 
-/* Main Section Card */
+/* Main Card */
 .farmer-main {
   padding: 32px;
-  max-width: 900px;
-  margin: 24px auto;
-  background-color: white;
+  max-width: 1100px;
+  margin: 0 auto;
+  background: white;
   border-radius: 16px;
-  box-shadow: 0 2px 16px rgba(34,197,94,0.12);
+  box-shadow: 0 2px 16px rgba(20, 83, 45, 0.12);
 }
 
-/* Section Titles */
+/* Title */
 .section-title {
-  color: #22c55e;
+  color: #14532d;
+  font-size: 26px;
+  font-weight: 700;
 }
