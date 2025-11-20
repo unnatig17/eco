@@ -3,48 +3,88 @@
   background-color: #bbf7d0;
   min-height: 100vh;
   font-family: Roboto, Arial, sans-serif;
+  padding-bottom: 40px;
 }
 
-/* Header */
+/* Navigation */
 .facility-header {
-  background-color: #14532d;
+  background-color: #bbf7d0;
   padding: 16px 0;
-  color: white;
 }
 
-/* Navbar */
 .facility-nav {
   display: flex;
   justify-content: center;
-  gap: 32px;
+  gap: 12px;
 }
 
-/* Button */
 .facility-btn {
-  background-color: #bbf7d0;
-  border: none;
+  background-color: white;
+  border: 2px solid #53c27b;
   border-radius: 8px;
   color: #14532d;
-  padding: 12px 24px;
+  padding: 10px 22px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.facility-btn:hover {
+  background-color: #d1fad3;
 }
 
 .facility-btn.active {
   background-color: #166534;
+  color: white;
 }
 
-/* Main Block */
+/* Main Content Card */
 .facility-main {
   padding: 32px;
-  max-width: 900px;
-  margin: 24px auto;
-  background-color: white;
+  max-width: 1100px;
+  margin: 0 auto;
+  background: white;
   border-radius: 16px;
-  box-shadow: 0 2px 16px rgba(34,197,94,0.12);
+  box-shadow: 0 2px 16px rgba(20, 83, 45, 0.12);
 }
 
-/* Section Titles */
+/* Title */
 .facility-title {
-  color: #22c55e;
+  color: #14532d;
+  font-size: 26px;
+  font-weight: 700;
 }
+
+.facility-home {
+  padding: 20px;
+}
+
+.facility-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.facility-subtitle {
+  color: #14532d;
+  margin-bottom: 25px;
+}
+
+.facility-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 20px;
+  border: 2px solid #a7f3d0;
+  box-shadow: 0px 0px 8px #00000015;
+}
+
+.facility-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #d1fae5;
+}
+
+.facility-item:last-child {
+  border-bottom: none;
+}
+

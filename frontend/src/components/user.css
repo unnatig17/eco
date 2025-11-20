@@ -3,48 +3,117 @@
   background-color: #bbf7d0;
   min-height: 100vh;
   font-family: Roboto, Arial, sans-serif;
+  padding-bottom: 40px;
 }
 
-/* Header */
+/* Navigation */
 .user-header {
-  background-color: #14532d;
+  background-color: #bbf7d0;
   padding: 16px 0;
-  color: white;
 }
 
-/* Navbar */
 .user-nav {
   display: flex;
   justify-content: center;
-  gap: 32px;
+  gap: 12px;
 }
 
-/* Navigation Buttons */
 .user-btn {
-  background-color: #bbf7d0;
-  border: none;
+  background-color: white;
+  border: 2px solid #53c27b;
   border-radius: 8px;
   color: #14532d;
-  padding: 12px 24px;
+  padding: 10px 22px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.user-btn:hover {
+  background-color: #d1fad3;
 }
 
 .user-btn.active {
   background-color: #166534;
+  color: white;
 }
 
-/* Card Container */
+/* Main Card */
 .user-main {
   padding: 32px;
-  max-width: 900px;
-  margin: 24px auto;
-  background-color: white;
+  max-width: 1100px;
+  margin: 0 auto;
+  background: white;
   border-radius: 16px;
-  box-shadow: 0 2px 16px rgba(34,197,94,0.12);
+  box-shadow: 0 2px 16px rgba(20, 83, 45, 0.12);
 }
 
-/* Titles */
+/* Title */
 .user-title {
-  color: #22c55e;
+  color: #14532d;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.user-home {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.home-card {
+  background: #f0fff0;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px #c7eccc;
+}
+
+.home-card h3 {
+  margin-top: 0;
+  color: #1b5e20;
+}
+
+.home-item {
+  margin: 10px 0;
+  padding: 12px;
+  background: white;
+  border-radius: 8px;
+  border-left: 5px solid #4caf50;
+}
+
+.quick-buttons button {
+  margin-right: 10px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+.report-box {
+  width: 100%;
+  height: 120px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 2px solid #86efac;
+  outline: none;
+  font-size: 15px;
+}
+
+.submit-report-btn {
+  margin-top: 12px;
+  padding: 10px 20px;
+  background: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.success-msg {
+  margin-top: 10px;
+  color: #15803d;
+  font-weight: 600;
 }

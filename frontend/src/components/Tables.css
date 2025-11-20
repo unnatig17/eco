@@ -1,0 +1,167 @@
+.table-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0px 2px 10px rgba(20, 83, 45, 0.12);
+  border-left: 4px solid #53c27b;
+  margin-bottom: 35px;
+}
+
+/* Header */
+.table-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.table-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #14532d;
+}
+
+.table-header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.filter-select {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 2px solid #53c27b;
+  background: white;
+  color: #14532d;
+  font-weight: 600;
+}
+
+.add-btn {
+  background: #14532d;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background: #166534;
+}
+
+/* Controls */
+.table-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.show-entries,
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #14532d;
+  font-size: 14px;
+}
+
+.search-input {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  min-width: 180px;
+}
+
+/* Table */
+.green-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.green-table thead {
+  background: #bbf7d0;
+  color: #14532d;
+}
+
+.green-table th {
+  padding: 10px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.green-table td {
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #14532d;
+}
+
+.no-data {
+  text-align: center;
+  padding: 16px;
+  color: #64748b;
+}
+
+/* Action buttons */
+.actions-col {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-btn {
+  background: white;
+  border: 2px solid #53c27b;
+  padding: 5px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  background: #bbf7d0;
+}
+
+.delete-btn {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Footer */
+.table-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 13px;
+  color: #14532d;
+}
+
+.entries-info {
+  font-style: italic;
+}
+
+.pagination {
+  display: flex;
+  gap: 6px;
+}
+
+.page-btn {
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid #53c27b;
+  background: white;
+  cursor: pointer;
+  color: #14532d;
+}
+
+.page-btn.active {
+  background: #22c55e;
+  border-color: #22c55e;
+  color: white;
+}
+
+.page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
