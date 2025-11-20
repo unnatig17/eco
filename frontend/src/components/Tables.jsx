@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from "react";
 import "./Tables.css";
+import { href } from "react-router-dom";
 
 function Tables({
   title,
@@ -7,7 +8,7 @@ function Tables({
   data,
   filterOptions = null,   // [{label:"Area 1", value:"1"}, ...]
   filterLabel = "Filter",
-  onAdd = null            // Optional "+ Add" button callback
+  onAdd          // Optional "+ Add" button callback
 }) {
 
   const [filter, setFilter] = useState("all");
@@ -75,15 +76,30 @@ function Tables({
           )}
 
           {/* Add button (optional) */}
-          {onAdd && (
-            <button className="add-btn" onClick={onAdd}>
+          {onAdd ? (
+            <button
+              className="add-btn"
+              onClick={() => {
+                onAdd();
+              }}
+            >
+              + Add
+            </button>
+          ) : (
+            <button
+              className="add-btn"
+              onClick={() => {
+                // route to AreaPage
+                window.location.href = "/areas";
+              }}
+            >
               + Add
             </button>
           )}
-        </div>
-      </div>
+                  </div>
+                </div>
 
-      {/* ----- TOP CONTROLS ----- */}
+                {/* ----- TOP CONTROLS ----- */}
       <div className="table-controls">
         <div className="show-entries">
           <span>Show</span>

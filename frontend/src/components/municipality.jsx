@@ -4,6 +4,7 @@ import useCsvData from "../hooks/useCsvData";
 import "./municipality.css";
 import Tables from "../components/Tables";
 import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
+import { getAreas, createArea, updateArea, deleteArea } from "../services/areaService";
 
 const position = { lat: 30.345, lng: 78.029 };
               
@@ -21,6 +22,7 @@ function Municipality() {
   const { data: dump, loading: loadingd } = useCsvData("dumplocation.csv");
   const { data: waste, loading: loadingw } = useCsvData("wastecollection.csv");
   const { data: issues } = useCsvData("issues.csv");
+  const [areas, setAreas] = useState([]);
 
   const [currentSection, setCurrentSection] = useState(sections[0].key);
 
@@ -28,9 +30,6 @@ function Municipality() {
       getAreas().then(res => setAreas(res.data));
     };
   
-    // useEffect(() => {
-    //   load();
-    // }, []);
 
   const handleDelete = (id) => {
       deleteArea(id).then(load);

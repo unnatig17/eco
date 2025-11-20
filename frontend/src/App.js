@@ -17,8 +17,8 @@ export default function App() {
     <BrowserRouter>
       <div className="min-h-screen bg-gray-50">
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/municipality" element={<Municipality />} />
           <Route path="/user" element={<User />} />
           <Route path="/farmer" element={<Farmer />} />
