@@ -134,7 +134,7 @@ function Municipality() {
           <div className="muni-card">
             <h2 className="muni-card-title">Map</h2>
 
-            <APIProvider apiKey="AIzaSyCgRe6EhS4nAqM0LKQFHUiG2w9d1p-cQ7A">
+            <APIProvider apiKey="<api-key>">
               <Map
                 id="municipality-map"
                 defaultCenter={position}
