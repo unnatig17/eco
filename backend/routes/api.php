@@ -21,6 +21,10 @@ Route::get('/csv', [CsvImportController::class, 'import']);
 
 Route::apiResource('/areas', App\Http\Controllers\AreaController::class);
 
+Route::post('/report-issue', [App\Http\Controllers\IssueController::class, 'store']);
+Route::get('/issues', [App\Http\Controllers\IssueController::class, 'index']);
+Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
+
 
 Route::get('/ping', function () {
     return ['status' => 'API OK'];
