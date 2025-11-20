@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Municipality from "./components/municipality";
 import Home from "./components/home";
 import User from "./components/user";
@@ -8,15 +9,20 @@ import Settings from "./components/settings";
 import Reports from "./components/reports";
 import Login from "./components/login";
 import Collections from "./components/collections";
-import AreaPage from "./pages/AreaPage";
-import AreaForm from "./components/Area/AreaForm";
-import AreaList from "./components/Area/AreaList";
+
+import AreaPage from "./pages/Area";
+import DumpLocationPage from "./pages/DumpLocations.jsx";
+import ProcessingPage from "./pages/Processing";
+import CompostPage from "./pages/Compost";
+import IssuesPage from "./pages/Issues";
 
 export default function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-gray-50">
         <Routes>
+
+          {/* MAIN ROUTES */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/municipality" element={<Municipality />} />
@@ -26,13 +32,16 @@ export default function App() {
           <Route path="/settings" element={<Settings />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/collections" element={<Collections />} />
+
+          {/* NEW PROPER CRUD ROUTES */}
           <Route path="/areas" element={<AreaPage />} />
-          <Route path="/areas/new" element={<AreaForm onSubmit={() => {}} onCancel={() => {}} />} />
-          <Route path="/areas/list" element={<AreaList data={[]} onEdit={() => {}} onDelete={() => {}} />} /> 
+          <Route path="/dumps" element={<DumpLocationPage />} />
+          <Route path="/processing" element={<ProcessingPage />} />
+          <Route path="/compost" element={<CompostPage />} />
+          <Route path="/issues" element={<IssuesPage />} />
 
         </Routes>
       </div>
     </BrowserRouter>
   );
 }
-

@@ -5,17 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Area extends Model
+class Processing extends Model
 {
     use HasFactory;
 
-    protected $table = 'areas';
-    protected $primaryKey = 'area_id';
+    protected $table = 'processing';
+    protected $primaryKey = 'processing_id';
     public $incrementing = true;
     protected $keyType = 'int';
 
     protected $fillable = [
-        'name',
-        'description',
+        'waste_classification_id',
+        'processing_method',
+        'processing_description',
+        'cost',
     ];
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import "./areaForm.css";
 
-function AreaForm({ initialData, onSubmit, onCancel }) {
+export default function AreaForm({ initialData, onSubmit, onCancel }) {
   const [form, setForm] = useState({ name: "", description: "" });
 
   useEffect(() => {
@@ -13,6 +14,7 @@ function AreaForm({ initialData, onSubmit, onCancel }) {
 
   return (
     <form
+      className="area-form"
       onSubmit={(e) => {
         e.preventDefault();
         onSubmit(form);
@@ -23,6 +25,7 @@ function AreaForm({ initialData, onSubmit, onCancel }) {
         placeholder="Area Name"
         value={form.name}
         onChange={handleChange}
+        required
       />
 
       <textarea
@@ -30,12 +33,18 @@ function AreaForm({ initialData, onSubmit, onCancel }) {
         placeholder="Description"
         value={form.description}
         onChange={handleChange}
+        required
       />
 
-      <button type="submit">{initialData ? "Update" : "Create"}</button>
-      <button type="button" onClick={onCancel}>Cancel</button>
+      <div className="form-actions">
+        <button type="submit" className="save-btn">
+          {initialData ? "Update" : "Create"}
+        </button>
+
+        <button type="button" className="cancel-btn" onClick={onCancel}>
+          Cancel
+        </button>
+      </div>
     </form>
   );
 }
-
-export default AreaForm;

@@ -5,17 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Area extends Model
+class Compost extends Model
 {
     use HasFactory;
 
-    protected $table = 'areas';
-    protected $primaryKey = 'area_id';
+    protected $table = 'compost';
+    protected $primaryKey = 'compost_id';
     public $incrementing = true;
     protected $keyType = 'int';
 
     protected $fillable = [
-        'name',
-        'description',
+        'area_id',
+        'compost_type',
+        'quantity_kg',
+        'price_per_kg',
     ];
 }

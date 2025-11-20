@@ -8,38 +8,36 @@ class IssueController extends Controller
 {
     public function store(Request $request)
     {
-        $issue = $request->issue_text;
         $file = storage_path('app/issues.csv');
 
-        // Create file with headers if it doesn't exist
+        // If file does not exist → create with header
         if (!file_exists($file)) {
-            file_put_contents($file, "id,issue_text,date\n");
+            file_put_contents($file, implode(',', [
+                "issue_id",
+                "user_id",
+                "dump_location_id",
+                "description",
+                "status",
+                "date"
+            ]) . "\n");
         }
 
-        $id = time(); // unique ID
-        $line = "$id,\"$issue\"," . date('Y-m-d H:i:s') . "\n";
+        $row = [
+            uniqid("issue_"),              // issue_id
+            "N/A",                         // user_id (since citizens don’t log in)
+            "",                            // dump_location_id (optional)
+            $request->issue_text,          // description
+            "pending",                     // status
+            date("Y-m-d"),                 // date
+        ];
 
-        file_put_contents($file, $line, FILE_APPEND);
+        $fp = fopen($file, 'a');
+        fputcsv($fp, $row);
+        fclose($fp);
 
-        return response()->json(['message' => 'Issue saved']);
-    }
-
-    public function index()
-    {
-        $file = storage_path('app/issues.csv');
-
-        if (!file_exists($file)) {
-            return response()->json([]);
-        }
-
-        $rows = array_map('str_getcsv', file($file));
-        $header = array_shift($rows);
-        $data = [];
-
-        foreach ($rows as $row) {
-            $data[] = array_combine($header, $row);
-        }
-
-        return response()->json($data);
+        return response()->json([
+            "success" => true,
+            "message" => "Issue saved"
+        ]);
     }
 }

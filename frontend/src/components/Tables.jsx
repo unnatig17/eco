@@ -1,73 +1,75 @@
 import React, { useState, useMemo } from "react";
 import "./Tables.css";
-import { href } from "react-router-dom";
 
 function Tables({
   title,
   columns,
   data,
-  filterOptions = null,   // [{label:"Area 1", value:"1"}, ...]
+  filterOptions = null,
   filterLabel = "Filter",
-  onAdd          // Optional "+ Add" button callback
+  onAdd,     // () => void
+  onEdit,    // (row) => void
+  onDelete,  // (row) => void
 }) {
-
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
-  const [entries, setEntries] = useState(30);  // Default 20,30,45,60
+  const [entries, setEntries] = useState(30);
   const [page, setPage] = useState(1);
 
-  // ---------------- FILTER + SEARCH ----------------
+  // -------- FILTER + SEARCH --------
   const filteredData = useMemo(() => {
-    let temp = data;
+    let temp = data || [];
 
-    // Filter
     if (filter !== "all") {
-      temp = temp.filter(row =>
-        Object.values(row).some(v => String(v).toLowerCase() === String(filter).toLowerCase())
+      temp = temp.filter((row) =>
+        Object.values(row).some(
+          (v) =>
+            String(v).toLowerCase() === String(filter).toLowerCase()
+        )
       );
     }
 
-    // Search
     if (search.trim()) {
       const q = search.toLowerCase();
-      temp = temp.filter(row =>
-        Object.values(row).some(v => String(v).toLowerCase().includes(q))
+      temp = temp.filter((row) =>
+        Object.values(row).some((v) =>
+          String(v).toLowerCase().includes(q)
+        )
       );
     }
 
     return temp;
   }, [data, filter, search]);
 
-  // ---------------- PAGINATION ----------------
-  const totalPages = Math.max(1, Math.ceil(filteredData.length / entries));
+  // -------- PAGINATION --------
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredData.length / entries)
+  );
   const currentPage = Math.min(page, totalPages);
 
   const startIndex = (currentPage - 1) * entries;
   const endIndex = startIndex + entries;
-
   const pageData = filteredData.slice(startIndex, endIndex);
 
   return (
     <div className="table-card">
-
-      {/* ----- HEADER ----- */}
+      {/* HEADER */}
       <div className="table-card-header">
         <h2 className="table-title">{title}</h2>
 
         <div className="table-header-actions">
-
-          {/* Filter dropdown (optional) */}
           {filterOptions && (
             <select
               className="filter-select"
               value={filter}
-              onChange={e => {
+              onChange={(e) => {
                 setFilter(e.target.value);
                 setPage(1);
               }}
             >
               <option value="all">All {filterLabel}</option>
-              {filterOptions.map(opt => (
+              {filterOptions.map((opt) => (
                 <option key={opt.value} value={opt.value}>
                   {opt.label}
                 </option>
@@ -75,31 +77,15 @@ function Tables({
             </select>
           )}
 
-          {/* Add button (optional) */}
-          {onAdd ? (
-            <button
-              className="add-btn"
-              onClick={() => {
-                onAdd();
-              }}
-            >
-              + Add
-            </button>
-          ) : (
-            <button
-              className="add-btn"
-              onClick={() => {
-                // route to AreaPage
-                window.location.href = "/areas";
-              }}
-            >
+          {onAdd && (
+            <button className="add-btn" onClick={onAdd}>
               + Add
             </button>
           )}
-                  </div>
-                </div>
+        </div>
+      </div>
 
-                {/* ----- TOP CONTROLS ----- */}
+      {/* TOP CONTROLS */}
       <div className="table-controls">
         <div className="show-entries">
           <span>Show</span>
@@ -123,7 +109,7 @@ function Tables({
             className="search-input"
             type="text"
             value={search}
-            onChange={e => {
+            onChange={(e) => {
               setSearch(e.target.value);
               setPage(1);
             }}
@@ -132,21 +118,24 @@ function Tables({
         </div>
       </div>
 
-      {/* ----- TABLE ----- */}
+      {/* TABLE */}
       <table className="green-table">
         <thead>
           <tr>
-            {columns.map(col => (
+            {columns.map((col) => (
               <th key={col.accessor}>{col.label}</th>
             ))}
-            <th>Actions</th>
+            {(onEdit || onDelete) && <th>Actions</th>}
           </tr>
         </thead>
 
         <tbody>
           {pageData.length === 0 && (
             <tr>
-              <td colSpan={columns.length + 1} className="no-data">
+              <td
+                colSpan={columns.length + (onEdit || onDelete ? 1 : 0)}
+                className="no-data"
+              >
                 No entries found
               </td>
             </tr>
@@ -154,58 +143,77 @@ function Tables({
 
           {pageData.map((row, idx) => (
             <tr key={idx}>
-              {columns.map(col => (
-                <td key={col.accessor}>
-                  {row[col.accessor]}
-                </td>
+              {columns.map((col) => (
+                <td key={col.accessor}>{row[col.accessor]}</td>
               ))}
 
-              <td className="actions-col">
-                <button className="edit-btn">Edit</button>
-                <button className="delete-btn">Delete</button>
-              </td>
+              {(onEdit || onDelete) && (
+                <td className="actions-col">
+                  {onEdit && (
+                    <button
+                      className="edit-btn"
+                      onClick={() => onEdit(row)}
+                    >
+                      Edit
+                    </button>
+                  )}
+                  {onDelete && (
+                    <button
+                      className="delete-btn"
+                      onClick={() => onDelete(row)}
+                    >
+                      Delete
+                    </button>
+                  )}
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
       </table>
 
-      {/* ----- FOOTER ----- */}
+      {/* FOOTER */}
       <div className="table-footer">
-
         <div className="entries-info">
           {filteredData.length === 0
             ? "Showing 0 entries"
-            : `Showing ${startIndex + 1} to ${Math.min(endIndex, filteredData.length)} of ${filteredData.length} entries`}
+            : `Showing ${startIndex + 1} to ${Math.min(
+                endIndex,
+                filteredData.length
+              )} of ${filteredData.length} entries`}
         </div>
 
         <div className="pagination">
           <button
             className="page-btn"
             disabled={currentPage === 1}
-            onClick={() => setPage(p => Math.max(1, p - 1))}
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
           >
             Previous
           </button>
 
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
-            <button
-              key={p}
-              className={`page-btn ${p === currentPage ? "active" : ""}`}
-              onClick={() => setPage(p)}
-            >
-              {p}
-            </button>
-          ))}
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+            (p) => (
+              <button
+                key={p}
+                className={`page-btn ${
+                  p === currentPage ? "active" : ""
+                }`}
+                onClick={() => setPage(p)}
+              >
+                {p}
+              </button>
+            )
+          )}
 
           <button
             className="page-btn"
             disabled={currentPage === totalPages}
-            onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+            onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
           >
             Next
           </button>
         </div>
-
       </div>
     </div>
   );

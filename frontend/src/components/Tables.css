@@ -1,13 +1,27 @@
-.table-card {
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 24px;
-  box-shadow: 0px 2px 10px rgba(20, 83, 45, 0.12);
-  border-left: 4px solid #53c27b;
-  margin-bottom: 35px;
+/* === PAGE WRAPPER (optional, for pages like Area.jsx) === */
+.page-wrapper {
+  min-height: 100vh;
+  padding: 32px 60px;
+  background: #bbf7d0;          /* soft green background */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
 }
 
-/* Header */
+/* === CARD AROUND TABLE === */
+.table-card {
+  width: 100%;
+  max-width: 1200px;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 24px 26px 22px;
+  box-shadow: 0 8px 28px rgba(22, 101, 52, 0.12);
+  border: 1px solid rgba(22, 163, 74, 0.18);
+  box-sizing: border-box;
+}
+
+/* === HEADER (title + buttons) === */
 .table-card-header {
   display: flex;
   justify-content: space-between;
@@ -16,9 +30,10 @@
 }
 
 .table-title {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 700;
   color: #14532d;
+  margin: 0;
 }
 
 .table-header-actions {
@@ -27,112 +42,184 @@
   align-items: center;
 }
 
+/* === FILTER SELECT === */
 .filter-select {
-  padding: 6px 12px;
-  border-radius: 6px;
-  border: 2px solid #53c27b;
-  background: white;
-  color: #14532d;
-  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid #86efac;
+  background: #f0fdf4;
+  color: #166534;
+  font-size: 14px;
+  outline: none;
 }
 
+/* === ADD BUTTON === */
 .add-btn {
-  background: #14532d;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 8px;
+  padding: 8px 18px;
+  border-radius: 999px;
   border: none;
+  background: #166534;           /* dark green */
+  color: #f9fafb;
+  font-weight: 600;
+  font-size: 14px;
   cursor: pointer;
+  box-shadow: 0 4px 12px rgba(22, 101, 52, 0.35);
+  transition: transform 0.1s ease, box-shadow 0.1s ease,
+    background 0.15s ease;
 }
 
 .add-btn:hover {
-  background: #166534;
+  background: #15803d;
+  box-shadow: 0 6px 16px rgba(22, 101, 52, 0.45);
+  transform: translateY(-1px);
 }
 
-/* Controls */
+.add-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(22, 101, 52, 0.35);
+}
+
+/* === TOP CONTROLS (Show entries + Search) === */
 .table-controls {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  align-items: center;
+  margin-bottom: 14px;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: #14532d;
 }
 
-.show-entries,
+.show-entries {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.show-entries select {
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1px solid #86efac;
+  background: #f0fdf4;
+  color: #166534;
+  outline: none;
+}
+
 .search-box {
+  margin-left: auto;
   display: flex;
   align-items: center;
   gap: 6px;
-  color: #14532d;
-  font-size: 14px;
 }
 
 .search-input {
   padding: 6px 10px;
-  border-radius: 6px;
-  border: 1px solid #cbd5e1;
-  min-width: 180px;
+  border-radius: 999px;
+  border: 1px solid #86efac;
+  background: #ffffff;
+  font-size: 14px;
+  outline: none;
+  min-width: 170px;
 }
 
-/* Table */
+.search-input:focus {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.18);
+}
+
+/* === TABLE === */
 .green-table {
   width: 100%;
   border-collapse: collapse;
+  font-size: 14px;
+  margin-bottom: 10px;
 }
 
-.green-table thead {
-  background: #bbf7d0;
-  color: #14532d;
+.green-table thead tr {
+  background: #bbf7d0;           /* pastel green header */
 }
 
-.green-table th {
-  padding: 10px;
-  font-weight: 700;
+.green-table th,
+.green-table td {
+  padding: 10px 12px;
   text-align: left;
 }
 
-.green-table td {
-  padding: 10px;
-  border-bottom: 1px solid #e5e7eb;
+.green-table th {
+  font-weight: 700;
   color: #14532d;
+  border-bottom: 1px solid #a3e635;
 }
 
+.green-table tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+.green-table tbody tr:nth-child(odd) {
+  background: #ffffff;
+}
+
+.green-table tbody tr:hover {
+  background: #ecfdf5;
+}
+
+/* "No entries" row */
 .no-data {
   text-align: center;
-  padding: 16px;
-  color: #64748b;
+  padding: 18px 0;
+  color: #6b7280;
+  font-style: italic;
 }
 
-/* Action buttons */
+/* === ACTION BUTTONS (Edit / Delete) === */
 .actions-col {
   display: flex;
-  gap: 10px;
+  gap: 8px;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: none;
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.15s ease, transform 0.1s ease,
+    box-shadow 0.1s ease;
 }
 
 .edit-btn {
-  background: white;
-  border: 2px solid #53c27b;
-  padding: 5px 12px;
-  border-radius: 6px;
-  cursor: pointer;
+  background: #e0f2fe;
+  color: #075985;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.18);
 }
 
 .edit-btn:hover {
-  background: #bbf7d0;
+  background: #bfdbfe;
+  transform: translateY(-0.5px);
 }
 
 .delete-btn {
-  background: #dc2626;
-  color: white;
-  border: none;
-  padding: 5px 12px;
-  border-radius: 6px;
-  cursor: pointer;
+  background: #fee2e2;
+  color: #b91c1c;
+  box-shadow: 0 2px 6px rgba(248, 113, 113, 0.2);
 }
 
-/* Footer */
+.delete-btn:hover {
+  background: #fecaca;
+  transform: translateY(-0.5px);
+}
+
+/* === FOOTER (entries info + pagination) === */
 .table-footer {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 6px;
   font-size: 13px;
   color: #14532d;
 }
@@ -141,27 +228,39 @@
   font-style: italic;
 }
 
+/* Pagination */
 .pagination {
   display: flex;
   gap: 6px;
+  align-items: center;
 }
 
 .page-btn {
+  min-width: 32px;
   padding: 4px 10px;
-  border-radius: 6px;
-  border: 1px solid #53c27b;
-  background: white;
+  border-radius: 999px;
+  border: 1px solid #bbf7d0;
+  background: #ffffff;
+  color: #166534;
+  font-size: 13px;
   cursor: pointer;
-  color: #14532d;
+  font-weight: 500;
+  transition: background 0.15s ease, color 0.15s ease,
+    border-color 0.15s ease, transform 0.1s ease;
+}
+
+.page-btn:hover:not(:disabled) {
+  background: #dcfce7;
+  transform: translateY(-0.5px);
+}
+
+.page-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
 }
 
 .page-btn.active {
   background: #22c55e;
-  border-color: #22c55e;
-  color: white;
-}
-
-.page-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+  color: #f9fafb;
+  border-color: #16a34a;
 }

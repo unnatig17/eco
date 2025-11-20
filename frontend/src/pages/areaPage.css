@@ -1,0 +1,27 @@
+.area-page {
+  padding: 20px;
+  font-family: Roboto, Arial, sans-serif;
+  background: #bbf7d0; /* light green */
+  min-height: 100vh;
+}
+
+.area-title {
+  color: #14532d;
+  margin-bottom: 16px;
+}
+
+.add-btn {
+  background: white;
+  border: 2px solid #53c27b;
+  border-radius: 10px;
+  padding: 10px 20px;
+  color: #14532d;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+  margin-bottom: 20px;
+}
+
+.add-btn:hover {
+  background: #d1fad3;
+}
